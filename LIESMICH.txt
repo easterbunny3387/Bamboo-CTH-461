@@ -1,0 +1,175 @@
+BAMBOO-TREIBER FÜR WINDOWS 11
+Installationshilfe für das Wacom Bamboo Pen & Touch CTH-461
+============================================================
+
+
+KURZFASSUNG
+-----------
+1. Tablet per USB anschließen (geht auch später).
+2. „Bamboo-Win11-Installer.exe“ doppelklicken und die Windows-Rückfrage
+   („Möchten Sie zulassen, dass durch diese App Änderungen …“) mit „Ja“
+   bestätigen.
+3. Auf „Installieren“ klicken und den Rückfragen folgen. Im Wacom-Setup
+   die Sprache wählen und den Lizenzvertrag bestätigen.
+4. Zum Schluss auf „Neu starten“ klicken. Fertig.
+
+
+WARUM GIBT ES DIESES PROGRAMM?
+------------------------------
+Wacom unterstützt das Bamboo CTH-461 offiziell nur bis Windows 10. Beim
+passenden Treiber 5.3.5-3 steht deshalb „bis Windows 10“. Der aktuelle
+Wacom-Treiber (Version 6.x) kennt das Tablet nicht mehr und meldet:
+„Dieses Gerät wird nicht mehr unterstützt“.
+
+Technisch läuft der alte Treiber 5.3.5-3 unter Windows 11 aber einwandfrei:
+ • Das Setup enthält keine Sperre für neuere Windows-Versionen.
+ • Die Gerätetreiber sind von Microsoft geprüft und signiert (WHQL).
+   Windows 11 lädt sie ohne Beanstandung.
+
+Der Haken: Ist bereits ein neuerer Wacom-Treiber installiert, überspringt
+das alte Setup seinen eigenen Tablet-Treiber. Eine Fehlermeldung gibt es
+nicht, aber das Bamboo funktioniert danach trotzdem nicht. Genau diesen Fall
+löst das Programm automatisch.
+
+
+WAS DAS PROGRAMM MACHT
+----------------------
+1. Systemprüfung
+   Es zeigt Windows-Version, angeschlossenes Tablet, installierte
+   Wacom-Treiber, Wacom-Dienst und die Speicherintegrität an.
+
+2. Neueren Wacom-Treiber entfernen (nur falls vorhanden, nur nach Rückfrage)
+   Dafür nutzt es das Deinstallationsprogramm von Wacom selbst.
+
+3. Blockierende Dateireste beiseitelegen (nur falls vorhanden)
+   Dateien des neueren Treibers, die das alte Setup nicht ersetzt, verschiebt
+   es nach „C:\Program Files\Tablet\_beiseitegelegt_<Datum>“. Das betrifft
+   Treiberdateien in „C:\Program Files\Tablet“ und eine neuere
+   „Wintab32.dll“ in den Windows-Systemordnern. Gelöscht wird nichts.
+
+4. Original-Setup starten
+   Es entpackt das unveränderte Wacom-Setup 5.3.5-3 und startet es.
+
+5. Ergebnis prüfen
+   Läuft der Wacom-Dienst? Nutzt das Tablet den Bamboo-Treiber? Antwortet
+   die Wintab-Schnittstelle, über die Malprogramme den Andruck abfragen?
+
+Ist der Bamboo-Treiber schon installiert, aber etwas stimmt nicht, heißt
+der Knopf „Reparieren“.
+
+Was das Programm NICHT macht:
+ • Es verändert keine Treiberdateien. Alles stammt unverändert von Wacom.
+ • Es schaltet keine Windows-Sicherheitsfunktionen ab.
+ • Es lädt nichts aus dem Internet und sendet keine Daten.
+
+
+VORAUSSETZUNGEN
+---------------
+ • Windows 11 oder Windows 10, jeweils 64-Bit (x64). Auf PCs mit
+   ARM-Prozessor (z. B. Snapdragon) läuft der alte Treiber nicht.
+ • Ein Benutzerkonto mit Administratorrechten (Windows fragt beim Start).
+ • Das Bamboo CTH-461. Der Treiber 5.3.5-3 unterstützt auch andere ältere
+   Bamboo-Modelle. Die Systemprüfung zeigt an, ob ein angeschlossenes Tablet
+   unterstützt wird.
+
+
+WICHTIG: NUR EIN WACOM-TREIBER GLEICHZEITIG
+-------------------------------------------
+Der alte Bamboo-Treiber und der neue Wacom-Treiber 6.x schließen sich
+gegenseitig aus. Wer am selben PC zusätzlich ein neueres Wacom-Gerät nutzt
+(Intuos, One, Cintiq …), braucht den neuen Treiber. Dann geht nur das eine
+oder das andere. Deshalb fragt das Programm vor dem Entfernen nach.
+
+Falls das Wacom-Deinstallationsprogramm am Ende einen Neustart anbietet, am
+besten „Später“ wählen. Wer doch neu startet, führt das Programm danach
+einfach noch einmal aus.
+
+
+NACH DER INSTALLATION
+---------------------
+ • Testen: Stift über das Tablet bewegen, in einem Malprogramm (Paint,
+   Krita …) den Andruck ausprobieren, Touch-Gesten mit den Fingern.
+ • Einstellungen: Startmenü › Wacom › „Wacom Voreinstellungen“
+   (Tasten, Stift, Touch, Zuordnung zum Bildschirm).
+ • Deinstallieren: Einstellungen › Apps › Installierte Apps › „Wacom“
+   (Version 5.3.5-3).
+
+Damit es so bleibt:
+ • Keinen neueren Wacom-Treiber und kein „Wacom Center“ installieren, sonst
+   funktioniert das Bamboo nicht mehr. Ist es doch passiert: dieses
+   Programm einfach erneut ausführen.
+ • Speicherintegrität (Windows-Sicherheit › Gerätesicherheit ›
+   Kernisolierung): Ist sie eingeschaltet, blockiert Windows die alten
+   Treiber von 2014 unter Umständen als „inkompatibel“. Die Systemprüfung
+   warnt dann. Die Speicherintegrität ist eine Schutzfunktion. Ob man sie
+   für das Tablet ausschaltet, muss jeder selbst abwägen.
+
+
+FEHLERBEHEBUNG
+--------------
+Tablet reagiert nicht
+  → USB-Kabel ab- und wieder anstecken, sonst den PC neu starten.
+  → Programm erneut starten: Die Systemprüfung zeigt, was fehlt.
+
+Wacom-Dienst läuft nicht
+  → PC neu starten. Hilft das nicht: im Programm „Neu installieren“ wählen.
+
+Zeiger geht, aber kein Andruck in Photoshop, GIMP, Krita & Co.
+  → Programm starten und auf die Zeile „Wintab (Malprogramme)“ achten.
+    Steht dort „antwortet nicht“, auf „Reparieren“ klicken. Ursache ist
+    meist eine Wintab32.dll, die ein neuerer Wacom-Treiber hinterlassen hat.
+  → In Krita lässt sich alternativ unter Einstellungen › Krita einrichten ›
+    Tablet-Einstellungen „Windows 8+ Pointer Input“ wählen.
+
+Wacom-Setup wurde abgebrochen
+  → Programm einfach erneut ausführen.
+
+Windows zeigt „Der Computer wurde durch Windows geschützt“
+  → Das Programm hat keine digitale Signatur. Die Meldung erscheint, wenn
+    die exe aus dem Internet oder per E-Mail kommt. „Weitere Informationen“
+    und dann „Trotzdem ausführen“ wählen.
+
+Protokoll
+  → Jeder Schritt wird mitgeschrieben in:
+    %TEMP%\Bamboo-Win11-Installer.log
+    (im Explorer-Adressfeld %TEMP% eingeben)
+
+
+FALLS ES EINMAL GAR NICHT MEHR GEHT
+-----------------------------------
+Sollte ein künftiges Windows-Update die alten Treiber sperren, gibt es den
+kostenlosen, quelloffenen „OpenTabletDriver“ (opentabletdriver.net). Er kommt
+ohne eigenen Kernel-Treiber aus und unterstützt viele ältere Wacom-Tablets.
+
+
+TECHNISCHER HINTERGRUND (FÜR INTERESSIERTE)
+------------------------------------------
+ • Das CTH-461 meldet sich per USB mit der Geräte-ID 056A:00D2.
+ • Die Treiberdatei wachidrouter_con.inf (Version 3.2.1.1 vom 06.08.2014)
+   aus dem Paket 5.3.5-3 enthält genau diese ID. Die Katalogdateien sind
+   vom „Microsoft Windows Hardware Compatibility Publisher“ signiert.
+ • Das Wacom-Setup wird über Skriptdateien gesteuert (Installer.dat,
+   Common.dat). Im Abschnitt [InstallHidRouter] steht sinngemäß: „Liegt in
+   C:\Program Files\Tablet schon eine wachidrouter.sys, die nicht älter ist,
+   dann die Installation des Router-Treibers überspringen.“ Der Treiber 6.x
+   legt dort eine neuere wachidrouter.sys ab. Dadurch wird der
+   Bamboo-Treiber nie eingerichtet.
+ • Waren beide Treiber gleichzeitig installiert, bleibt beim Entfernen von
+   6.x dessen Wintab32.dll (Version 1.0.5-10) in System32 und SysWOW64
+   liegen. Das Bamboo-Setup kopiert seine eigene Wintab32.dll (1.0.5-8) nur,
+   wenn sie neuer ist („CopyFileIfNewer“), lässt die 6.x-Datei also stehen.
+   Die spricht aber nicht mit dem alten Bamboo-Dienst: Der Zeiger geht, der
+   Andruck in Malprogrammen fehlt. Deshalb legt das Programm sie vorher
+   beiseite.
+ • Eine Prüfung der Windows-Version enthält das Setup nicht. Windows 11
+   meldet sich intern ohnehin als Version 10.0.
+
+
+LIZENZ UND HAFTUNG
+------------------
+Die exe enthält das unveränderte Treiberpaket 5.3.5-3 von Wacom. Dafür gilt
+der Wacom-Lizenzvertrag, der im Setup angezeigt wird. Bitte die exe nur
+privat weitergeben und nicht öffentlich zum Download anbieten.
+
+Dieses Installationsprogramm ist kein Produkt von Wacom. Wacom leistet dafür
+keinen Support. Die Benutzung geschieht auf eigene Verantwortung.

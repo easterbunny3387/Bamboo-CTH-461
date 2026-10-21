@@ -1,0 +1,6 @@
+# Die gebaute exe enthält das Wacom-Treiberpaket – laut Wacom-Lizenz nicht weitergeben.
+*.exe
+*.zip
+pentablet_*/
+WacomTablet_*/
+*.log
